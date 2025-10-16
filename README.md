@@ -30,7 +30,7 @@ Solution : Pythonic List Slicing and zip()
 
 - Source for the zip() : https://www.geeksforgeeks.org/python/python-separate-odd-and-even-index-elements/
 
-### Visualization
+### C. Visualization
 
 - Converting the structured data (final_result) into clear Bar Charts using matplotlib.pyplot.
 
@@ -43,3 +43,39 @@ Solution : Pythonic List Slicing and zip()
 - By including plt.yticks(range(0, max_freq + 2, 2)), I am telling Matplotlib " my ticks appear only on even integers.
 
 - Source for the graph : https://www.geeksforgeeks.org/python/graph-plotting-in-python-set-1/, https://www.geeksforgeeks.org/python/plotting-multiple-bar-charts-using-matplotlib-in-python/, https://matplotlib.org/stable/
+
+## Task 2: Multi-Line Sequence Data (task_2.ipynb)
+
+Input File: data/dna_raw_complicated.txt
+
+The Solution : "Process the Previous" (The main idea behind my code is to only process and save a completed sequence when you find the starting line of the next one. The header line (>seq...) acts as a trigger )
+
+Description
+
+- This code parses a DNA data file (dna_raw_complicated.txt) where genetic sequences can be split across multiple lines. It reads the file, groups the lines for each sequence, counts the frequency of the nucleotides (A, T, C, G), and generates a bar chart for each sequence to visualize the results.Counter for frequency counting (the collections module, which is part of the Python Standard Library. It comes included with Python, so I don't need to install it. Counter is a specialized dictionary subclass for counting hashable objects.) Matplotlib for creating graphs and visualizations in Python. I have to install it separately (e.g., using pip install matplotlib).
+
+### A. File Reading
+
+- The file is read using file.readlines()
+
+### B. Function Definition and Execution
+
+1. Initialization
+   Before the loop starts, I set up :
+
+   - final_result = []: An empty list to hold your final, completed results.
+
+   - seq_id = None: A variable to hold the name of the sequence you're currently collecting. It's empty because it hasnt started yet.
+
+   - current_sequence_lines = []: A temporary list to gather all the DNA fragments for the current sequence.
+
+2. The Main Loop
+
+   - If the line is a header (>): This is the trigger. It's time to process the previous sequence. The code joins all the fragments it has gathered in current_sequence_lines, counts the letters, and appends the final dictionary to final_result. Then, it resets seq_id and current_sequence_lines to start fresh for the new sequence.
+
+   - If the line is a DNA line : The code simply adds this line to the current_sequence_lines list. It doesn't do any counting yet; it just collects the piece and waits for the next one.
+
+3. The Final Cleanup
+   - After the loop finishes, the very last sequence is still sitting in current_sequence_lines. It was never processed because no new > header came after it to act as a trigger.My code block after the loop handles this specific case. It runs the same counting and saving logic one last time to ensure the final sequence isn't forgotten.
+
+Sources : https://www.geeksforgeeks.org/python/counters-in-python-set-1/, https://www.w3schools.com/python/ref_string_join.asp, https://www.w3schools.com/python/python_lists_comprehension.asp
