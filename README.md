@@ -79,3 +79,19 @@ Description
    - After the loop finishes, the very last sequence is still sitting in current_sequence_lines. It was never processed because no new > header came after it to act as a trigger.My code block after the loop handles this specific case. It runs the same counting and saving logic one last time to ensure the final sequence isn't forgotten.
 
 Sources : https://www.geeksforgeeks.org/python/counters-in-python-set-1/, https://www.w3schools.com/python/ref_string_join.asp, https://www.w3schools.com/python/python_lists_comprehension.asp
+
+### Creating the Graphs
+
+- First, it defines a blueprint for the x-axis: dna_letters = ['a', 't', 'c', 'g']. This ensures every graph has its bars in the same, consistent order.
+
+- Go Through the Results: The code then loops through your final_result list, looking at each of the dictionaries one by one.
+
+- Get a Blank Canvas: plt.figure() grabs a new, empty canvas to draw on. This is why you get a separate graph for each sequence.
+
+- Get the Bar Heights: It looks at the counts and arranges them according to the blueprint (a, then t, then c, then g).
+
+- Draw the Bars: plt.bar() draws the bar chart on the canvas.
+
+- Add Labels: plt.title() and the xlabel/ylabel functions write a title and labels on the poster so everyone knows what it's about.
+
+- Show the graphs : plt.show() displays the finished poster on your screen.
